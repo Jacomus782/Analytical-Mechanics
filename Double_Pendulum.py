@@ -14,6 +14,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 import matplotlib.animation as animation
+import math
+
 
 G = 9.8  # acceleration due to gravity, in m/s^2
 L1 = 1.0  # length of pendulum 1 in m
@@ -33,7 +35,7 @@ def derivs(state, t):
                M2*G*sin(state[2])*cos(del_) +
                M2*L2*state[3]*state[3]*sin(del_) -
                (M1 + M2)*G*sin(state[0]))/den1
-
+    
     dydx[2] = state[3]
 
     den2 = (L2/L1)*den1
@@ -75,12 +77,11 @@ line, = ax.plot([], [], 'o-', lw=2)
 time_template = 'time = %.1fs'
 time_text = ax.text(0.05, 0.9, '', transform=ax.transAxes)
 
-
 def init():
     line.set_data([], [])
     time_text.set_text('')
     return line, time_text
-
+    
 
 def animate(i):
     thisx = [0, x1[i], x2[i]]
@@ -89,10 +90,18 @@ def animate(i):
     line.set_data(thisx, thisy)
     time_text.set_text(time_template % (i*dt))
     return line, time_text
-
+  
+    
 ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
                               interval=25, blit=True, init_func=init)
-
+print(x1)
+print(x2)
+print(y1)
+print(y2)
+Q=np.arctan2(0.5,0.5)
+Q1 = math.degrees(Q)
+print(Q1)
+#print(x2)
 # ani.save('double_pendulum.mp4', fps=15)
 plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
