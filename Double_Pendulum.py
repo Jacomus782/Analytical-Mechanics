@@ -9,13 +9,13 @@ This animation illustrates the double pendulum problem.
 # Double pendulum formula translated from the C code at
 # http://www.physics.usyd.edu.au/~wheat/dpend_html/solve_dpend.c
 
-from numpy import sin, cos
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy.integrate as integrate
-import matplotlib.animation as animation
 import math
 
+import matplotlib.animation as animation
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.integrate as integrate
+from numpy import sin, cos
 
 G = 9.8  # acceleration due to gravity, in m/s^2
 L1 = 1.0  # length of pendulum 1 in m
@@ -47,7 +47,7 @@ def derivs(state, t):
     return dydx
 
 # create a time array from 0..100 sampled at 0.05 second steps (i.e. 0.05 gives realtime output)
-dt = 0.05
+dt = 0.01
 t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
@@ -69,14 +69,19 @@ y1 = -L1*cos(y[:, 0])
 x2 = L2*sin(y[:, 2]) + x1
 y2 = -L2*cos(y[:, 2]) + y1
 
+plumb_line_y = np.linspace(0, -2, 100)
+plumb_line_x = plumb_line_y*0
+
+
+
 fig = plt.figure()
 ax = fig.add_subplot(111, autoscale_on=False, xlim=(-2, 2), ylim=(-2, 2))
-ax.grid()
 
 line, = ax.plot([], [], 'o-', lw=2)
 time_template = 'time = %.1fs'
 time_text = ax.text(0.05, 0.9, '', transform=ax.transAxes)
 
+plt.plot(plumb_line_x, plumb_line_y)
 def init():
     line.set_data([], [])
     time_text.set_text('')
