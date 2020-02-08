@@ -95,23 +95,21 @@ def animate(i):
     line.set_data(thisx, thisy)
     time_text.set_text(time_template % (i * dt))
 
-    angle = math.degrees(np.arctan2(x1[i], y1[i]))
-    print(angle)
-    if angle > 0:
-        c1 = pat.Arc((0, 0), Lmax/2, Lmax/2, 90, 180, -angle)
+    angle1 = math.degrees(np.arctan2(x1[i], y1[i]))
+    if angle1 > 0:
+        c1 = pat.Arc((0, 0), Lmax/2, Lmax/2, 90, 180, -angle1)
     else:
-        c1 = pat.Arc((0, 0), Lmax / 2, Lmax / 2, 90, -angle, 180)
+        c1 = pat.Arc((0, 0), Lmax / 2, Lmax / 2, 90, -angle1, 180)
     ax.add_patch(c1)
-    return line, time_text,c1
+    return line, time_text, c1
 
-def angle_find(pos_x, pos_y):
-    angle = 90 + math.degrees(np.arctan2(pos_x, pos_y))
-    return angle
+#def angle_find(pos_x, pos_y):
+#    angle = 90 + math.degrees(np.arctan2(pos_x, pos_y))
+#    return angle
 
 
 ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
                               interval=25, blit=True, init_func=init)
-print(angle_find(x1[1],y1[1]))
 # ani.save('double_pendulum.mp4', fps=15)
 plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
