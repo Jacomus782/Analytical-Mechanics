@@ -47,14 +47,14 @@ def derivs(state, t):
 
 
 # create a time array from 0..100 sampled at 0.05 second steps
-dt = 0.025
+dt = 0.005
 t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
-th1 = 180.0
+th1 = 45.0
 w1 = 0.0
-th2 = 90.0
+th2 = 45.0
 w2 = 0.0
 
 # initial state
@@ -80,6 +80,7 @@ plumb_line_x = plumb_line_y * 0
 plt.plot(plumb_line_x, plumb_line_y, 'k--', alpha=0.5)
 
 angle1_raw = []
+angle2_raw = []
 time = []
 
 def init():
@@ -98,17 +99,24 @@ def animate(i):
     time.append(i * dt)
 
     angle1 = math.degrees(np.arctan2(x1[i], y1[i]))
+    angle2 = math.degrees(np.arctan2(x2[i]-x1[i], y2[i]-y1[i]))
     if angle1 > 0:
         c1 = pat.Arc((0, 0), Lmax/2, Lmax/2, 90, 180, -angle1)
     else:
         c1 = pat.Arc((0, 0), Lmax / 2, Lmax / 2, 90, -angle1, 180)
     ax.add_patch(c1)
     angle1_raw.append(angle1)
+    angle2_raw.append(angle2)
     return line, time_text, c1
 
 ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
                               interval=25, blit=True, init_func=init)
 plt.gca().set_aspect('equal', adjustable='box')
 plt.rcParams['animation.ffmpeg_path'] = 'C:/Users/adaka/OneDrive/Documents/ffmpeg-20200206-343ccfc-win64-static/bin'
-#ani.save('double_pendulum.mp4', writer='ffmpeg')
+#ani.save('double_pendulum.mp4', writer='ffmpeg') error with ffmpeg?
+plt.ylabel('Length (m)')
+plt.xlabel('Length (m)')
+plt.title('The Double Pendulum')
+ax.text(0.05, 0.63, ' θ1 Initial = {}\n θ2 Initial = {}\n L1 = {}\n L2 = {} \n M1 = {} \n M2 = {}'.format(th1, th2, L1, L2, M1, M2), transform = ax.transAxes)
+
 plt.show()
