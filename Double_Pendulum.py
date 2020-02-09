@@ -53,9 +53,9 @@ t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
-th1 = 1.0
+th1 = 20.0
 w1 = 0.0
-th2 = 1.0
+th2 = 30.0
 w2 = 0.0
 
 # initial state
