@@ -10,7 +10,6 @@ This animation illustrates the double pendulum problem.
 # http://www.physics.usyd.edu.au/~wheat/dpend_html/solve_dpend.c
 
 import math
-
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import matplotlib.patches as pat
@@ -53,9 +52,9 @@ t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
-th1 = 20.0
+th1 = 180.0
 w1 = 0.0
-th2 = 30.0
+th2 = 90.0
 w2 = 0.0
 
 # initial state
@@ -81,6 +80,7 @@ plumb_line_x = plumb_line_y * 0
 plt.plot(plumb_line_x, plumb_line_y, 'k--', alpha=0.5)
 
 angle1_raw = []
+time = []
 
 def init():
     line.set_data([], [])
@@ -94,6 +94,8 @@ def animate(i):
 
     line.set_data(thisx, thisy)
     time_text.set_text(time_template % (i * dt))
+
+    time.append(i * dt)
 
     angle1 = math.degrees(np.arctan2(x1[i], y1[i]))
     if angle1 > 0:
