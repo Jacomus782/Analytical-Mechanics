@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as pat
 import numpy as np
 import scipy.integrate as integrate
-from matplotlib import patches
 from numpy import sin, cos
 
 G = 9.8  # acceleration due to gravity, in m/s^2
@@ -49,12 +48,12 @@ def derivs(state, t):
 
 
 # create a time array from 0..100 sampled at 0.05 second steps
-dt = 0.01
+dt = 0.025
 t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
-th1 = 50
+th1 = 1.0
 w1 = 0.0
 th2 = 1.0
 w2 = 0.0
@@ -81,6 +80,7 @@ plumb_line_y = np.linspace(0, -Lmax, 100)
 plumb_line_x = plumb_line_y * 0
 plt.plot(plumb_line_x, plumb_line_y, 'k--', alpha=0.5)
 
+angle1_raw = []
 
 def init():
     line.set_data([], [])
@@ -101,15 +101,12 @@ def animate(i):
     else:
         c1 = pat.Arc((0, 0), Lmax / 2, Lmax / 2, 90, -angle1, 180)
     ax.add_patch(c1)
+    angle1_raw.append(angle1)
     return line, time_text, c1
-
-#def angle_find(pos_x, pos_y):
-#    angle = 90 + math.degrees(np.arctan2(pos_x, pos_y))
-#    return angle
-
 
 ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
                               interval=25, blit=True, init_func=init)
-# ani.save('double_pendulum.mp4', fps=15)
 plt.gca().set_aspect('equal', adjustable='box')
+plt.rcParams['animation.ffmpeg_path'] = 'C:/Users/adaka/OneDrive/Documents/ffmpeg-20200206-343ccfc-win64-static/bin'
+#ani.save('double_pendulum.mp4', writer='ffmpeg')
 plt.show()
