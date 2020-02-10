@@ -79,6 +79,10 @@ plumb_line_y = np.linspace(0, -Lmax, 100)
 plumb_line_x = plumb_line_y * 0
 plt.plot(plumb_line_x, plumb_line_y, 'k--', alpha=0.5)
 
+
+
+
+
 angle1_raw = []
 angle2_raw = []
 time = []
@@ -104,10 +108,15 @@ def animate(i):
         c1 = pat.Arc((0, 0), Lmax/2, Lmax/2, 90, 180, -angle1)
     else:
         c1 = pat.Arc((0, 0), Lmax / 2, Lmax / 2, 90, -angle1, 180)
+    if angle2 > 0:
+        c2 = pat.Arc((x1[i], y1[i]), Lmax/2 , Lmax/2, 90, 180, -angle2)
+    else:
+        c2 = pat.Arc((x1[i], y1[i]), Lmax/2  , Lmax/2 , 90, -angle2, 180)
     ax.add_patch(c1)
+    ax.add_patch(c2)
     angle1_raw.append(angle1)
     angle2_raw.append(angle2)
-    return line, time_text, c1
+    return line, time_text, c1,c2
 
 ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
                               interval=25, blit=True, init_func=init)
