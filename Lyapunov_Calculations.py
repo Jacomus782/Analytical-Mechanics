@@ -41,72 +41,77 @@ def vector_mag(x, y):
     return length
 
 # create a time array from 0..100 sampled at 0.05 second steps
-dt = 0.01
+dt = 0.02
 t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
-th1 = 40
-w1 = 0
-th2 = 0
-w2 = 0
-dth1 = 0.01
-dth2 = 0.01
-dw1 = 0
-dw2 = 0
-
-
-angle1_array = []
-angle2_array = []
-momentum1_array = []
-momentum2_array = []
-factor_array = []
-
-
-
-vector_array = []
-
-for i in range(5):
-    state = np.radians([th1 - dth1*i, w1 - dw1*i , th2 - dth2*i, w2 - dw2*i])
-
-    y = integrate.odeint(derivs, state, t)
-
-    x1 = L1 * sin(y[:, 0])
-    y1 = -L1 * cos(y[:, 0])
-
-    x2 = L2 * sin(y[:, 2]) + x1
-    y2 = -L2 * cos(y[:, 2]) + y1
-
-    initial_angle1 = math.degrees(np.arctan2(x1[0], y1[0]))
-    initial_angle2 = math.degrees(np.arctan2(x2[0], y2[0]))
-
-    angle1 = math.degrees(np.arctan2(x1[1], y1[1]))
-    angle1_array.append(angle1)
-
-    angle2 = math.degrees(np.arctan2(x2[1], y2[1]))
-    angle2_array.append(angle2)
-    if i == 0:
-        vector_0 = vector_mag(angle1_array[0] - initial_angle1, angle2_array[0] - initial_angle2)
-    else:
-        vector_array.append(vector_mag(angle1_array[0] - initial_angle1, angle2_array[0] - initial_angle2))
-    # momentum1 = y[0, 0]
-    # momentum1_array.append(momentum1)
-
-    # momentum2 = y[0, 2]
-    # momentum2_array.append(momentum2)
-
-    #factor_array.append(factor_calc(angle1_array[i], initial_angle1))
-vector_average = mean(vector_array)
-
-lyapunov_exponent = factor_calc(vector_average, vector_0)
 
 angles = []
 exponents = []
 
-angles.append(th1)
-exponents.append(lyapunov_exponent)
+for th1 in range(1, 180):
+    print(th1)
+    #th1 = 40
+    w1 = 0
+    th2 = 0
+    w2 = 0
+    dth1 = 0.1
+    dth2 = 0.0
+    dw1 = 0
+    dw2 = 0
 
-plt.plot(x, y)
 
-print(lyapunov_exponent)
+    angle1_array = []
+    angle2_array = []
+    momentum1_array = []
+    momentum2_array = []
+    factor_array = []
+    vector_array = []
+
+    for i in range(5):
+        state = np.radians([th1 - dth1*i, w1 - dw1*i , th2 - dth2*i, w2 - dw2*i])
+
+        y = integrate.odeint(derivs, state, t)
+
+        x1 = L1 * sin(y[:, 0])
+        y1 = -L1 * cos(y[:, 0])
+
+        x2 = L2 * sin(y[:, 2]) + x1
+        y2 = -L2 * cos(y[:, 2]) + y1
+
+        initial_angle1 = math.degrees(np.arctan2(x1[0], y1[0]))
+        initial_angle2 = math.degrees(np.arctan2(x2[0], y2[0]))
+
+        angle1 = math.degrees(np.arctan2(x1[1], y1[1]))
+        angle1_array.append(angle1)
+
+        angle2 = math.degrees(np.arctan2(x2[1], y2[1]))
+        angle2_array.append(angle2)
+        if i == 0:
+                vector_0 = vector_mag(angle1_array[0] - initial_angle1, angle2_array[0] - initial_angle2)
+        else:
+                vector_array.append(vector_mag(angle1_array[0] - initial_angle1, angle2_array[0] - initial_angle2))
+        # momentum1 = y[0, 0]
+        # momentum1_array.append(momentum1)
+
+        # momentum2 = y[0, 2]
+        # momentum2_array.append(momentum2)
+
+        #factor_array.append(factor_calc(angle1_array[i], initial_angle1))
+
+    vector_average = mean(vector_array)
+
+    lyapunov_exponent = factor_calc(vector_average, vector_0)
+
+    angles.append(th1)
+    exponents.append(lyapunov_exponent)
+
+plt.plot(angles, exponents)
+xline = np.arange(1, 180)
+yline = xline * 0
+plt.plot(xline, yline)
+plt.show()
+plt.savefig('Last_Lyapunov_Plot')
+
 
