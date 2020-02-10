@@ -42,24 +42,23 @@ def derivs(state, t):
                (M1 + M2) * G * sin(state[0]) * cos(del_) -
                (M1 + M2) * L1 * state[1] * state[1] * sin(del_) -
                (M1 + M2) * G * sin(state[2])) / den2
-
     return dydx
 
 
 # create a time array from 0..100 sampled at 0.05 second steps
-dt = 0.005
+dt = 0.05
 t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
-th1 = 45.0
+th1 = 45.0001
 w1 = 0.0
-th2 = 45.0
+th2 = 45
 w2 = 0.0
 
 # initial state
 state = np.radians([th1, w1, th2, w2])
-
+print(th1)
 # integrate your ODE using scipy.integrate.
 y = integrate.odeint(derivs, state, t)
 
@@ -79,13 +78,10 @@ plumb_line_y = np.linspace(0, -Lmax, 100)
 plumb_line_x = plumb_line_y * 0
 plt.plot(plumb_line_x, plumb_line_y, 'k--', alpha=0.5)
 
-
-
-
-
 angle1_raw = []
 angle2_raw = []
 time = []
+
 
 def init():
     line.set_data([], [])
@@ -109,23 +105,26 @@ def animate(i):
     else:
         c1 = pat.Arc((0, 0), Lmax / 2, Lmax / 2, 90, -angle1, 180)
     if angle2 > 0:
-        c2 = pat.Arc((x1[i], y1[i]), Lmax/2 , Lmax/2, 90, 180, -angle2)
+        c2 = pat.Arc((x1[i], y1[i]), Lmax/2, Lmax/2, 90, 180, -angle2)
     else:
-        c2 = pat.Arc((x1[i], y1[i]), Lmax/2  , Lmax/2 , 90, -angle2, 180)
+        c2 = pat.Arc((x1[i], y1[i]), Lmax/2, Lmax/2, 90, -angle2, 180)
     ax.add_patch(c1)
     ax.add_patch(c2)
     angle1_raw.append(angle1)
     angle2_raw.append(angle2)
-    return line, time_text, c1,c2
+
+    return line, time_text, c1, c2
 
 ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
                               interval=25, blit=True, init_func=init)
+
 plt.gca().set_aspect('equal', adjustable='box')
-plt.rcParams['animation.ffmpeg_path'] = 'C:/Users/adaka/OneDrive/Documents/ffmpeg-20200206-343ccfc-win64-static/bin'
-#ani.save('double_pendulum.mp4', writer='ffmpeg') error with ffmpeg?
+plt.rcParams['animation.ffmpeg_path'] = 'C:\\Users\\adaka\\OneDrive\\Documents\\ffmpeg-20200206-343ccfc-win64-static\\bin\\ffmpeg'
+#ani.save('double_pendulum.mp4', writer='ffmpeg')
 plt.ylabel('Length (m)')
 plt.xlabel('Length (m)')
 plt.title('The Double Pendulum')
-ax.text(0.05, 0.63, ' θ1 Initial = {}\n θ2 Initial = {}\n L1 = {}\n L2 = {} \n M1 = {} \n M2 = {}'.format(th1, th2, L1, L2, M1, M2), transform = ax.transAxes)
+ax.text(0.05, 0.63, ' θ1 Initial = {}\n θ2 Initial = {}\n L1 = {}\n L2 = {} \n M1 = {} \n M2 = {}'
+        .format(th1, th2, L1, L2, M1, M2), transform = ax.transAxes)
 
 plt.show()
