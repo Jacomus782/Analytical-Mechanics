@@ -6,10 +6,10 @@ from numpy import sin, cos
 from statistics import mean
 
 G = 9.8  # acceleration due to gravity, in m/s^2
-L1 = 1.0  # length of pendulum 1 in m
-L2 = 1.0  # length of pendulum 2 in m
-M1 = 1.0  # mass of pendulum 1 in kg
-M2 = 1.0  # mass of pendulum 2 in kg
+L1 = 0.2683  # length of pendulum 1 in m
+L2 = 0.199  # length of pendulum 2 in m
+M1 = 0.06538  # mass of pendulum 1 in kg
+M2 = 0.06013  # mass of pendulum 2 in kg
 Lmax = L1 + L2
 
 def derivs(state, t):
@@ -41,7 +41,7 @@ def vector_mag(x, y):
     return length
 
 # create a time array from 0..100 sampled at 0.05 second steps
-dt = 0.02
+dt = 0.33
 t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
@@ -50,13 +50,15 @@ t = np.arange(0.0, 20, dt)
 angles = []
 exponents = []
 
-for th1 in range(1, 180):
+start_angle = 1
+end_angle = 180
+for th1 in range(start_angle, end_angle):
     print(th1)
     #th1 = 40
     w1 = 0
     th2 = 0
     w2 = 0
-    dth1 = 0.1
+    dth1 = 0.0001
     dth2 = 0.0
     dw1 = 0
     dw2 = 0
@@ -69,7 +71,7 @@ for th1 in range(1, 180):
     factor_array = []
     vector_array = []
 
-    for i in range(5):
+    for i in range(-5, 6):
         state = np.radians([th1 - dth1*i, w1 - dw1*i , th2 - dth2*i, w2 - dw2*i])
 
         y = integrate.odeint(derivs, state, t)
@@ -91,7 +93,7 @@ for th1 in range(1, 180):
         if i == 0:
                 vector_0 = vector_mag(angle1_array[0] - initial_angle1, angle2_array[0] - initial_angle2)
         else:
-                vector_array.append(vector_mag(angle1_array[0] - initial_angle1, angle2_array[0] - initial_angle2))
+                vector_array.append(vector_mag(angle2_array[0] - initial_angle1, angle2_array[0] - initial_angle2))
         # momentum1 = y[0, 0]
         # momentum1_array.append(momentum1)
 
@@ -108,10 +110,12 @@ for th1 in range(1, 180):
     exponents.append(lyapunov_exponent)
 
 plt.plot(angles, exponents)
-xline = np.arange(1, 180)
+xline = np.arange(start_angle, end_angle)
 yline = xline * 0
 plt.plot(xline, yline)
+plt.title('Lyapunov Exponent')
+plt.xlabel('Angle of the first pendulum (°)')
+plt.ylabel('Exponent Value')
 plt.show()
-plt.savefig('Last_Lyapunov_Plot')
 
 
