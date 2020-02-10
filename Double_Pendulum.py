@@ -17,11 +17,11 @@ import numpy as np
 import scipy.integrate as integrate
 from numpy import sin, cos
 
-G = 9.8  # acceleration due to gravity, in m/s^2
-L1 = 1.0  # length of pendulum 1 in m
-L2 = 1.0  # length of pendulum 2 in m
-M1 = 1.0  # mass of pendulum 1 in kg
-M2 = 1.0  # mass of pendulum 2 in kg
+G = 9.8 # acceleration due to gravity, in m/s^2
+L1 = 1  # length of pendulum 1 in m
+L2 = 1  # length of pendulum 2 in m
+M1 = 1  # mass of pendulum 1 in kg
+M2 = 1 # mass of pendulum 2 in kg
 Lmax = L1 + L2
 
 def derivs(state, t):
@@ -46,19 +46,19 @@ def derivs(state, t):
 
 
 # create a time array from 0..100 sampled at 0.05 second steps
-dt = 0.05
+dt = 0.019
 t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
-th1 = 45.0001
-w1 = 0.0
-th2 = 45
+th1 = 0
+w1 = 100.0
+th2 = 0
 w2 = 0.0
 
 # initial state
 state = np.radians([th1, w1, th2, w2])
-print(th1)
+
 # integrate your ODE using scipy.integrate.
 y = integrate.odeint(derivs, state, t)
 
@@ -101,13 +101,13 @@ def animate(i):
     angle1 = math.degrees(np.arctan2(x1[i], y1[i]))
     angle2 = math.degrees(np.arctan2(x2[i]-x1[i], y2[i]-y1[i]))
     if angle1 > 0:
-        c1 = pat.Arc((0, 0), Lmax/2, Lmax/2, 90, 180, -angle1)
+        c1 = pat.Arc((0, 0), L1, L1, 90, 180, -angle1)
     else:
-        c1 = pat.Arc((0, 0), Lmax / 2, Lmax / 2, 90, -angle1, 180)
+        c1 = pat.Arc((0, 0), L1, L1, 90, -angle1, 180)
     if angle2 > 0:
-        c2 = pat.Arc((x1[i], y1[i]), Lmax/2, Lmax/2, 90, 180, -angle2)
+        c2 = pat.Arc((x1[i], y1[i]), L2, L2, 90, 180, -angle2)
     else:
-        c2 = pat.Arc((x1[i], y1[i]), Lmax/2, Lmax/2, 90, -angle2, 180)
+        c2 = pat.Arc((x1[i], y1[i]), L2, L2, 90, -angle2, 180)
     ax.add_patch(c1)
     ax.add_patch(c2)
     angle1_raw.append(angle1)
@@ -124,7 +124,7 @@ plt.rcParams['animation.ffmpeg_path'] = 'C:\\Users\\adaka\\OneDrive\\Documents\\
 plt.ylabel('Length (m)')
 plt.xlabel('Length (m)')
 plt.title('The Double Pendulum')
-ax.text(0.05, 0.63, ' θ1 Initial = {}\n θ2 Initial = {}\n L1 = {}\n L2 = {} \n M1 = {} \n M2 = {}'
+ax.text(0.05, 0.63, ' θ1 Initial = {}°\n θ2 Initial = {}°\n L1 = {} m\n L2 = {} m\n M1 = {} kg\n M2 = {} kg'
         .format(th1, th2, L1, L2, M1, M2), transform = ax.transAxes)
 
 plt.show()
