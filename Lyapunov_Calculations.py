@@ -41,9 +41,9 @@ def vector_mag(x, y):
     return length
 
 # create a time array from 0..100 sampled at 0.05 second steps
-dt = 0.33
+dt = 0.5 #careful to vary as array call
 t = np.arange(0.0, 20, dt)
-
+last_state = len(t) - 1
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
 
@@ -52,7 +52,7 @@ exponents = []
 
 start_angle = 1
 end_angle = 180
-for th1 in range(start_angle, end_angle):
+for th1 in range(start_angle, end_angle, 10):
     print(th1)
     #th1 = 40
     w1 = 0
@@ -82,13 +82,13 @@ for th1 in range(start_angle, end_angle):
         x2 = L2 * sin(y[:, 2]) + x1
         y2 = -L2 * cos(y[:, 2]) + y1
 
-        initial_angle1 = math.degrees(np.arctan2(x1[0], y1[0]))
-        initial_angle2 = math.degrees(np.arctan2(x2[0], y2[0]))
+        initial_angle1 = math.degrees(np.arctan2(x1[last_state - 1], y1[last_state - 1]))
+        initial_angle2 = math.degrees(np.arctan2(x2[last_state - 1], y2[last_state - 1]))
 
-        angle1 = math.degrees(np.arctan2(x1[1], y1[1]))
+        angle1 = math.degrees(np.arctan2(x1[last_state], y1[last_state]))
         angle1_array.append(angle1)
 
-        angle2 = math.degrees(np.arctan2(x2[1], y2[1]))
+        angle2 = math.degrees(np.arctan2(x2[last_state], y2[last_state]))
         angle2_array.append(angle2)
         if i == 0:
                 vector_0 = vector_mag(angle1_array[0] - initial_angle1, angle2_array[0] - initial_angle2)

@@ -46,12 +46,12 @@ def derivs(state, t):
 
 
 # create a time array from 0..100 sampled at 0.05 second steps
-dt = 0.019
+dt = 0.05
 t = np.arange(0.0, 20, dt)
 
 # th1 and th2 are the initial angles (degrees)
 # w10 and w20 are the initial angular velocities (degrees per second)
-th1 = 90
+th1 = 30
 w1 = 0
 th2 = 0
 w2 = 0.0
@@ -82,6 +82,8 @@ angle1_raw = []
 angle2_raw = []
 time = []
 
+print('The length of array: {}'.format(len(x1)))
+print('The length of t: {}'.format(len(t)))
 
 def init():
     line.set_data([], [])

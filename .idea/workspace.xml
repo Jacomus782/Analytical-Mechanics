@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0491e31c-b15e-4e95-9862-e3ddc6c3c5ad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Plot_Angle_1_Angle_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plot_Angles_Overlain.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Double_Pendulum.py" beforeDir="false" afterPath="$PROJECT_DIR$/Double_Pendulum.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lyapunov_Calculations.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lyapunov_Calculations.py" afterDir="false" />
@@ -34,7 +36,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.Lyapunov_Calculations">
+  <component name="RunManager" selected="Python.Plot_Angles_Overlain">
     <configuration name="Double_Pendulum" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Analytical-Mechanics" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -56,7 +58,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Lyapunov_Calculations" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Plot_Angle_1_Angle_2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Analytical-Mechanics" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -68,28 +70,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lyapunov_Calculations.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Lyapunov_Data_Extractor (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Analytical-Mechanics" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lyapunov_Data_Extractor.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Plot_Angle_1_Angle_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -140,11 +121,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Plot_Angles_Overlain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Analytical-Mechanics" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Plot_Angles_Overlain.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Lyapunov_Calculations" />
+        <item itemvalue="Python.Plot_Angles_Overlain" />
+        <item itemvalue="Python.Plot_Angle_1_Angle_2" />
         <item itemvalue="Python.Double_Pendulum" />
-        <item itemvalue="Python.Lyapunov_Data_Extractor (1)" />
         <item itemvalue="Python.Plot_Angle_2_Time" />
         <item itemvalue="Python.Plot_Angle_1_Time" />
       </list>
@@ -182,14 +184,22 @@
       <option name="project" value="LOCAL" />
       <updated>1581367864715</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Changed angles to vary between positive and negative variance and set parameters to match test setup">
+      <created>1581372470186</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1581372470186</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created a system for taking lyapunov data from the simulation." />
     <MESSAGE value="First Lyapunov numbers calculated, works only for single angle." />
     <MESSAGE value="Attempted to loop Lyapunov calcs for diff initial" />
-    <option name="LAST_COMMIT_MESSAGE" value="Attempted to loop Lyapunov calcs for diff initial" />
+    <MESSAGE value="Changed angles to vary between positive and negative variance and set parameters to match test setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed angles to vary between positive and negative variance and set parameters to match test setup" />
   </component>
   <component name="WindowStateProjectService">
     <state x="679" y="140" key="#Double_Pendulum" timestamp="1581344048324">
@@ -200,34 +210,34 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="640" y="262" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1581354513004" />
-    <state x="614" y="119" key="CommitChangelistDialog2" timestamp="1581367864389">
+    <state x="614" y="119" key="CommitChangelistDialog2" timestamp="1581372469860">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="614" y="119" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1581367864389" />
+    <state x="614" y="119" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1581372469860" />
     <state x="740" y="281" key="FileChooserDialogImpl" timestamp="1581351807906">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="281" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1581351807906" />
-    <state width="1899" height="285" key="GridCell.Tab.0.bottom" timestamp="1581370847907">
+    <state width="1899" height="285" key="GridCell.Tab.0.bottom" timestamp="1581534343332">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581331674015" />
-    <state width="1899" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1581370847907" />
-    <state width="1899" height="285" key="GridCell.Tab.0.center" timestamp="1581370847907">
+    <state width="1899" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1581534343332" />
+    <state width="1899" height="285" key="GridCell.Tab.0.center" timestamp="1581534343332">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581331674015" />
-    <state width="1899" height="285" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1581370847907" />
-    <state width="1899" height="285" key="GridCell.Tab.0.left" timestamp="1581370847907">
+    <state width="1899" height="285" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1581534343332" />
+    <state width="1899" height="285" key="GridCell.Tab.0.left" timestamp="1581534343332">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581331674015" />
-    <state width="1899" height="285" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1581370847907" />
-    <state width="1899" height="285" key="GridCell.Tab.0.right" timestamp="1581370847907">
+    <state width="1899" height="285" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1581534343332" />
+    <state width="1899" height="285" key="GridCell.Tab.0.right" timestamp="1581534343332">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581331674015" />
-    <state width="1899" height="285" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1581370847907" />
+    <state width="1899" height="285" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1581534343332" />
     <state width="1899" height="352" key="GridCell.Tab.1.bottom" timestamp="1581348888088">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -252,10 +262,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="461" y="168" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1581354596990" />
-    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1581367866448">
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1581372471798">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1581367866448" />
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1581372471798" />
     <state x="656" y="366" key="com.intellij.ide.util.TipDialog" timestamp="1581331012821">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
