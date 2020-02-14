@@ -13,9 +13,3 @@ https://scipython.com/blog/the-double-pendulum/
 # :Plot_Angle_1_Angle_2.py
 *
 
-
-* Plot
-    * Angle 1 vs Angle 2
-    * Angles vs Time 
-    * Lyapunov exponent over time
-    * Angles against their time derivatives
